@@ -1,0 +1,26 @@
+create_table "images", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  t.integer   "target_type", null: false, limit: 1
+  t.string    "title",       null: false, limit: 127
+  t.string    "url",         null: false, limit: 255
+  t.string    "thumbnail",   null: false, limit: 255
+  t.string    "adjusty",     null: false, default: '{"width": "100%","top": "0px","left": "0px"}'
+  t.boolean   "deleted",     null: false, default: false
+  t.datetime  "created_at",  null: false, default: -> { "CURRENT_TIMESTAMP" }
+  t.timestamp "updated_at",  null: false, default: -> { "CURRENT_TIMESTAMP" }
+end
+
+create_table "memos", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  t.integer   "tag_id",       null: false, limit: 4
+  t.string    "title",        null: false, limit: 127
+  t.string    "body",         null: false, limit: 4095
+  t.boolean   "deleted",      null: false, default: false
+  t.datetime  "published_at", null: false, default: -> { "CURRENT_TIMESTAMP" }
+  t.datetime  "created_at",   null: false, default: -> { "CURRENT_TIMESTAMP" }
+  t.timestamp "updated_at",   null: false, default: -> { "CURRENT_TIMESTAMP" }
+end
+
+create_table "tags", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  t.string "name",  null: false, limit: 127
+  t.string "color", null: false, limit: 127
+end
+

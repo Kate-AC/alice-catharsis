@@ -1,0 +1,31 @@
+version: '3'
+services:
+  app:
+    image: 320981266684.dkr.ecr.ap-northeast-1.amazonaws.com/production-alice-catharsis-backend:latest
+    env_file: .env
+    command: /bin/sh -c "rm -f ./tmp/pids/server.pid && bundle exec ridgepole --config ./config/database.yml -E production --file ./db/Schemafile --apply && bundle exec puma -e production -C config/puma.rb"
+    volumes:
+      - work_dir:/projects/alice_catharsis
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: production/alice-catharsis/app
+        awslogs-region: ap-northeast-1
+        awslogs-stream-prefix: app
+  nginx:
+    image: 320981266684.dkr.ecr.ap-northeast-1.amazonaws.com/production-alice-catharsis-nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - work_dir:/projects/alice_catharsis
+    command: /usr/sbin/nginx -g 'daemon off;'
+    restart: always
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: production/alice-catharsis/nginx
+        awslogs-region: ap-northeast-1
+        awslogs-stream-prefix: nginx
+volumes:
+  work_dir:
+

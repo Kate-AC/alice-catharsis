@@ -1,0 +1,33 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    volumes:
+      - ./:/projects/alice_catharsis
+    command: sh -c "cd react-app && npm run start"
+    ports:
+      - "37000:3000"
+    tty: true
+    env_file: "./react-app/.env.development"
+    networks:
+      default:
+      alice_catharsis_network:
+  webpack:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    volumes:
+      - ./:/projects/alice_catharsis
+    command: sh -c "cd react-app && npm run watch"
+    ports:
+      - "37001:8080"
+    tty: true
+    networks:
+      default:
+      alice_catharsis_network:
+networks:
+  alice_catharsis_network:
+    external: true
+

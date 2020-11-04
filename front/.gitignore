@@ -1,0 +1,5 @@
+/react-app/node_modules
+!/react-app/build/.keep
+/react-app/build/*
+/react-app/public/css/*
+/react-app/public/js/*

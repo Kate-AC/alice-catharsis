@@ -1,0 +1,92 @@
+#header-set,
+#header-set-dummy {
+  background-color: rgba(255, 255, 255, 0);
+  height: 168px;
+  transition: all 0.4s ease;
+}
+
+#header-set {
+  left: 0;
+  padding: 0 5%;
+  position: fixed;
+  top: 0;
+  transition: all 0.4s ease;
+  width: 100%;
+  z-index: 100;
+
+  &.responsive {
+    background-color: rgba(255, 255, 255, 0.8);
+    height: 118px;
+
+    #hero-title {
+      padding: 1.4rem 0;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  #menu {
+    .panel { width: 140px; }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  br {
+    display: none;
+  }
+
+  #gallery {
+    .image-panel {
+      height: 45vw;
+      margin: 0 0.5rem 1.5rem 0.5rem;
+      width: 100%;
+    }
+  }
+
+  #header-set,
+  #header-set-dummy {
+    height: 68px;
+
+    &.responsive {
+      height: 68px;
+    }
+
+    #hero-title {
+      font-size: 1.5rem;
+      padding: 1.5rem 0;
+    }
+  }
+
+  hr.line-style {
+    margin: 0.2rem 0 2rem 0;
+  }
+
+  #side-button-set {
+    padding: 1.5rem 1rem 3rem 2rem;
+  }
+
+  #menu {
+    background-color: rgba(255, 255, 255, 0.8);
+    flex-direction: column;
+    left: 0;
+    padding: 80px 0 0 0;
+    position: absolute;
+    top: -2000px;
+    width: 100%;
+    z-index: -1;
+
+    .panel {
+      padding: 0 5%;
+      max-width: 100%;
+      width: 100%;
+    }
+
+    &.opened {
+      top: 0;
+    }
+  }
+
+  .btn-trigger {
+    visibility: visible;
+  }
+}

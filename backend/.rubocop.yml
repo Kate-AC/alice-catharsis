@@ -1,0 +1,91 @@
+AllCops:
+  TargetRubyVersion: 2.7
+  Exclude:
+    - 'bin/**/*'
+    - 'bundle/**/*'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+    - 'storage/**/*'
+    - 'db/**/*'
+  DisplayCopNames: true
+
+Layout/SpaceInsideBlockBraces:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+#
+# Lint
+#
+
+Lint/SuppressedException:
+  Enabled: false
+
+Lint/Loop:
+  Enabled: false
+
+#
+# Metrics
+#
+
+Metrics/AbcSize:
+  Max: 20
+
+Metrics/BlockLength:
+  Max: 128
+  Enabled: false
+
+Metrics/ClassLength:
+  Max: 128
+
+Metrics/LineLength:
+  Max: 128
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 50
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+#
+# Performance
+#
+
+#
+# Style
+#
+
+Style/FormatStringToken:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Style/GlobalVars:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+
+Style/RescueModifier:
+  Enabled: false
+
+Style/SafeNavigation:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/TrivialAccessors:
+  Enabled: false

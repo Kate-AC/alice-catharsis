@@ -1,0 +1,64 @@
+version: '3'
+services:
+#  minio:
+#    image: minio/minio:edge
+#    ports:
+#      - "27001:9000"
+#    volumes:
+#      - ./docker/data/minio:/export
+#    environment:
+#      MINIO_ACCESS_KEY: minio
+#      MINIO_SECRET_KEY: miniominio
+#    command: server /export
+  redis:
+    image: redis:alpine
+    ports:
+      - "27002:6379"
+  db:
+    image: mysql:5.7
+    ports:
+      - "27003:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+    volumes:
+      - db:/var/lib/mysql:delegated
+    command: mysqld --max_allowed_packet=16M --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+  app:
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    env_file: .env
+    command: /bin/sh -c "rm -f ./tmp/pids/server.pid && bundle exec puma -C config/puma.rb"
+    volumes:
+      - .:/projects/alice_catharsis:cached
+      - tmp:/projects/alice_catharsis/tmp
+      - bundle:/projects/alice_catharsis/bundle
+      - node_modules:/projects/alice_catharsis/node_modules
+    depends_on:
+      - db
+      - redis
+      - nginx
+    networks:
+      default:
+      alice_catharsis_network:
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    volumes:
+      - tmp:/projects/alice_catharsis/tmp
+    ports:
+      - "27000:80"
+    command: /usr/sbin/nginx -g 'daemon off;'
+    restart: always
+    networks:
+      default:
+      alice_catharsis_network:
+volumes:
+  bundle:
+  node_modules:
+  db:
+  tmp:
+networks:
+  alice_catharsis_network:
+    external: true

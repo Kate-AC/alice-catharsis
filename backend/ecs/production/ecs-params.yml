@@ -1,0 +1,26 @@
+version: 1
+task_definition:
+  ecs_network_mode: awsvpc
+  task_execution_role: CustomEcsTaskExecutionRole
+  task_size:
+    cpu_limit: 512
+    mem_limit: 2GB
+  services:
+    app:
+      secrets:
+        - value_from: /db/password
+          name: DB_PASSWORD
+        - value_from: /mail/password
+          name: MAIL_PASSWORD
+
+run_params:
+  network_configuration:
+    awsvpc_configuration:
+      subnets:
+        - "subnet-056c3b418e8912033"
+        - "subnet-0f7d661c010c06144"
+      security_groups:
+        - "sg-02d8b7166a44744e3"
+        - "sg-02f2e69096ed10e40"
+        - "sg-0970c50b275b929c1"
+      assign_public_ip: ENABLED

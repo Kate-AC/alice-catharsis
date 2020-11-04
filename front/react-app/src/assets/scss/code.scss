@@ -1,0 +1,41 @@
+.code-box {
+  border-left: solid #ccc 1px;
+  border-bottom: solid #ccc 1px;
+  margin-top: 2rem;
+
+  .header {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: left;
+
+    &.closed {
+      span:before {
+        content: '▲';
+      }
+    }
+
+    &.opened {
+      span:before {
+        content: '▼';
+      }
+    }
+
+    &.opened,
+    &.closed {
+      span:before {
+        font-size: 0.8rem;
+        padding: 0 1rem;
+      }
+    }
+  }
+
+  .contents {
+    transition: all 0.4s ease;
+    padding: 0 2rem 2rem 2rem;
+
+    &.closed {
+      display: none;
+    }
+  }
+}

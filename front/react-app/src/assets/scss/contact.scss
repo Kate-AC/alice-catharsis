@@ -1,0 +1,39 @@
+#contact-form {
+  margin: 1rem;
+
+  textarea {
+    background: hsla(0, 0, 100%, 0.5);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-weight: 500;
+    height: 300px;
+    width: 100%;
+    max-width: 500px;
+    padding: 8px;
+  }
+
+  button {
+    background-color: #47baea;
+    border: none;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 0.5rem 3rem;
+    margin-top: 1rem;
+
+    &:focus {
+      outline: none;
+    }
+
+    &.disabled {
+      background-color: #cccccc;
+    }
+  }
+
+  #status {
+    font-weight: bold;
+    color: blue;
+    margin-left: 1rem;
+  }
+}

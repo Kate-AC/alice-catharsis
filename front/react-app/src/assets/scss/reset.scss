@@ -1,0 +1,32 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+#root {
+  width: 100%;
+}
+
+@font-face {
+  font-family: "JosefinSlab";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/josefinslab/v11/lW-5wjwOK3Ps5GSJlNNkMalnqg6vBMjoPg.woff2) format('woff2');
+}
+
+body {
+  color: #444444;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: 16px;
+  font-family: "JosefinSlab", serif;
+  letter-spacing: 2px;
+  min-height: 100vh;
+  min-height: 1000px;
+}
+
