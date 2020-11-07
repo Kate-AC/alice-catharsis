@@ -14,21 +14,21 @@ resource "aws_route53_record" "current" {
   }
 }
 
-resource "aws_route53_record" "backend" {
+resource "aws_route53_record" "api" {
   zone_id = data.aws_route53_zone.current.zone_id
-  name    = "backend.${data.aws_route53_zone.current.name}"
+  name    = aws_api_gateway_domain_name.production.domain_name
   type    = "A"
 
   alias {
-    name                   = aws_lb.current.dns_name
-    zone_id                = aws_lb.current.zone_id
+    name                   = aws_api_gateway_domain_name.production.regional_domain_name
+    zone_id                = aws_api_gateway_domain_name.production.regional_zone_id
     evaluate_target_health = true
   }
 }
 
 resource "aws_acm_certificate" "current" {
   domain_name               = aws_route53_record.current.name
-  subject_alternative_names = ["backend.${aws_route53_record.current.name}"]
+  subject_alternative_names = ["api.${var.domain}"]
   validation_method         = "DNS"
 
   lifecycle {
