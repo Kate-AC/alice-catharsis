@@ -1,0 +1,32 @@
+{
+  "memos": [
+    {
+      "PutRequest": {
+        "Item": {
+          "id": {"S":"1"},
+          "tag_id": {"S":"1"},
+          "title": {"S":"近況"},
+          "body": {"S":"<p>  使い道を決めかねているページです。<br>  旧サイトで言うところの日記みたいな感じにしようかと思っていたんですが、<br>  さほど書きたいこともないので廃止される可能性があります。<br>  同人とかやってたら宣伝とかできるんですけど、その予定も今のところなく。<br>  （お前なんか制作中ですとか言ってなかった？とかそういう突っ込みはナシで）<br></p><p>  少し僕の近況をお話しさせていただくと、<br>  この文章を書いている2016年12月現在、もう2年くらい絵を描いていません。<br>  普通に社会人になって余裕がなくなったというのと、<br>  絵を描いて飯を食っていこうみたいな意気込みがなくなってしまったからでした。<br>  絵を描かなくなる2年くらい前から薄々感じていた事ではありますが、才能もセンスも無かったんですね。<br>  描くのを辞めるまでは多分それを認められなかったんでしょう。<br>  絵を描くのが好きで、絵の仕事の休憩中にすらお絵かきしてる人とかいますけど、<br>  正直そういう人と比べると別にお絵かきが好きではなく、一生の仕事とするのは無理だと悟ったからです。<br>  普通に動画見たりゲームしたいです。<br>  結局好きなタイミングで描いている時が一番楽しいので、趣味でいいやという結論になりました。<br></p><p>  そしてまた絵を描き始めるかなあーと思い、サイトも一新したわけです。<br>  前のサイトは個人のレンタルサーバーだったのですが、<br>  データが吹っ飛んだらしく管理者の方が失踪したっぽいのでもうどうにもできないです。<br>  それも一新の理由ではあります。<br>  以前にも1年半くらい絵を描かなかった時期がありましたが、今回の放置期間は過去最長ですね。</p>"},
+          "deleted": {"BOOL": false},
+          "published_at": {"S":"2016-12-16 00:00:00"},
+          "creaetd_at": {"S":"2020-10-26 07:37:16"},
+          "updated_at": {"S":"2020-10-26 07:37:16"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": {"S":"2"},
+          "tag_id": {"S":"2"},
+          "title": {"S":"AmazonSNSをPHPで雑に扱う"},
+          "body": {"S":"<p>  SNSはAmazon Simple Notification Serviceの略。<br>  仕事で使いそうな感じだったので試してみた。<br></p><p>  ざっくり言うとメッセージを登録したサブスクリプション（エンドポイント）に対して送信してくれるサービス。<br>  HTTPSやEメール等のプロトコルが選択できる。<br></p><p>  今回このホームページにエンドポイントを生やしてみた。<br>  http://alice-catharsis.mydns.jp/test/sns<br></p><p>  AWSコンソールからポチポチとリクエストの確認を送信してみるが、エンドポイントのログに空が入る。<br>  $_POST変数にメッセージが入ってるかと思いきや入っておらず、php://inputの中を見ると入っていた。<br></p><p>  PHPリファレンスを見ると$_POSTに入るデータは<br>  > Content-Type に application/x-www-form-urlencoded<br>  > あるいは multipart/form-data を用いた HTTP リクエスト<br>  となっていた。<br></p><p>  なので明示的にcurlで$_POSTとfile_get_contents('php://input')の場合に何が入るのか試した。<br>  <pre>\n    <code class=\"bash\">\n      curl -k -H \"Content-Type: application/x-www-form-urlencoded\" -X POST https://alice-catharsis.mydns.jp/test/sns -d \"hoge\"\n      // {\"hoge\": \"\"}\n      curl -k -H \"Content-Type: application/json\" -X POST https://alice-catharsis.mydns.jp/test/sns -d \"hoge\"\n      // []\n    </code>\n  </pre></p><p> application/jsonだと$_POSTには入らないことがわかる。<br>AWSのリファレンスを見るとtext/plainで来ると書いていたので、$_POSTに入っていないというわけだった。<br>  <a href=\"https://docs.aws.amazon.com/ja_jp/sns/latest/dg/sns-message-and-json-formats.html\" target=\"_blank\">https://docs.aws.amazon.com/ja_jp/sns/latest/dg/sns-message-and-json-formats.html</a><br></p><p>  しかしこれだけではまだSNSからメッセージが送信されない。<br>  リクエストの確認ボタンで、エンドポイントに対して送られたjsonに含まれるURLにアクセスして<br>  ステータスを確認済みにする必要がある。<br></p><p>  jsonは以下のようなものが来る。<br>  <pre>\n    <code class=\"json\">\n      {\n        \"Type\" : \"SubscriptionConfirmation\",\n        \"MessageId\" : \"165545c9-2a5c-472c-8df2-7ff2be2b3b1b\",\n        \"Token\" : \"2336412f37fb687f5d51e6e241d09c805a5a5...\",\n        \"TopicArn\" : \"arn:aws:sns:us-west-2:123456789012:MyTopic\",\n        \"Message\" : \"You have chosen to subscribe to the topic ...\",\n        \"SubscribeURL\" : \"https://sns.us-west-2.amazonaws.com/?Action=Confirm...\",\n        \"Timestamp\" : \"2012-04-26T20:45:04.751Z\",\n        \"SignatureVersion\" : \"1\",\n        \"Signature\" : \"EXAMPLEpH+DcEwjAPg8O9mY8dReBSwksfg2S7WKQcikcNKW...\",\n        \"SigningCertURL\" : \"https://sns.us-west-2.amazonaws.com/SimpleNo...\"\n      }\n    </code>\n  </pre></p><p>  このjsonに含まれるSubscribeURLが認証用のURLである。<br>  ということでSNSメッセージの最終的な取得コードは以下。<br>  <pre>\n    <code class=\"php\">\n      $body = json_encode(file_get_contents('php://input'), true);\n      file_get_contents($body['SubscribeURL']); // URLを叩いて認証する\n      var_dump($body[\"Message\"]); // hoge\n    </code>\n  </pre></p><h3>アプリケーションからメッセージを発行する</h3><p>  あとで書く</p>"},
+          "deleted": {"BOOL": false},
+          "published_at": {"S":"2019-12-29 00:00:00"},
+          "creaetd_at": {"S":"2020-10-26 07:37:16"},
+          "updated_at": {"S":"2020-10-26 07:37:16"}
+        }
+      }
+    }
+  ]
+}

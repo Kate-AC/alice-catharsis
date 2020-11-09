@@ -1,12 +1,27 @@
-variable "name" {}
+variable "controller" {}
+variable "method" {}
+variable "http_method" {}
+variable "role" {}
+variable "env" {}
 variable "policy" {}
-variable "identifier" {}
+variable "log" {}
+variable "rest_api_arn" {}
+variable "rest_api_id" {}
+variable "root_resource_id" {}
 
-resource "aws_lambda_function" "images_index" {
-  function_name = "images_index"
-  handler       = "images.index"
-  role          = aws_iam_role.lambda_role.arn
+data "archive_file" "function_source" {
+  type        = "zip"
+  source_dir  = "functions"
+  output_path = "./functions/zip/${var.controller}.zip"
+}
+
+resource "aws_lambda_function" "current" {
+  function_name = "${var.controller}_${var.method}"
+  handler       = "${var.controller}.${var.method}"
+  role          = var.role
   runtime       = "ruby2.7"
+  memory_size   = 512
+  reserved_concurrent_executions = 10
 
   filename         = data.archive_file.function_source.output_path
   source_code_hash = data.archive_file.function_source.output_base64sha256
@@ -18,20 +33,67 @@ resource "aws_lambda_function" "images_index" {
   }
 
   depends_on = [
-    aws_iam_role_policy_attachment.lambda_policy,
-    aws_cloudwatch_log_group.lambda_images_index
+    var.policy,
+    var.log
   ]
 }
 
-resource "aws_lambda_permission" "images_index" {
+resource "aws_lambda_permission" "current" {
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.images_index.function_name
+  function_name = aws_lambda_function.current.function_name
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "${aws_api_gateway_rest_api.current.execution_arn}/*/*/*"
+  source_arn    = "${var.rest_api_arn}/*/*/*"
 }
 
-output "api_path" {
-  value = aws_iam_role.current.arn
+resource "aws_api_gateway_resource" "current" {
+  rest_api_id = var.rest_api_id
+  parent_id   = var.root_resource_id
+  path_part   = "${var.method}"
 }
 
+resource "aws_api_gateway_method" "current" {
+  rest_api_id   = var.rest_api_id
+  resource_id   = aws_api_gateway_resource.current.id
+  http_method   = var.http_method
+  authorization = "NONE"
+}
+
+resource "aws_api_gateway_integration" "current" {
+  rest_api_id             = var.rest_api_id
+  resource_id             = aws_api_gateway_resource.current.id
+  http_method             = aws_api_gateway_method.current.http_method
+  integration_http_method = "POST"
+  type                    = "AWS_PROXY"
+  uri                     = aws_lambda_function.current.invoke_arn
+}
+
+resource "aws_lambda_provisioned_concurrency_config" "current" {
+  function_name                     = aws_lambda_function.current.function_name
+  provisioned_concurrent_executions = 10
+  qualifier                         = aws_lambda_function.current.version
+}
+
+resource "aws_lambda_permission" "trigger" {
+  statement_id  = "AllowExecutionFromCloudwatch"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.current.function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.current.arn
+}
+
+resource "aws_cloudwatch_event_rule" "current" {
+  name                = "${var.controller}_${var.method}_function_every_minutes"
+  description         = "Lambdaを起こしておく"
+  schedule_expression = "cron(*/1 * * * ? *)"
+}
+
+resource "aws_cloudwatch_event_target" "current" {
+  rule      = aws_cloudwatch_event_rule.current.name
+  target_id = "${var.controller}_${var.method}"
+  arn       = aws_lambda_function.current.arn
+}
+
+output function_arn {
+  value = aws_lambda_function.current.arn
+}

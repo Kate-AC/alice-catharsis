@@ -42,7 +42,7 @@ export default class MemoList extends React.Component<Props, State> {
     return queryString.parse(window.location.search);
   }
 
-  componentDidMount(): void {
+  componentWillMount(): void {
     const params = MemoList.getParam();
     const { tagId } = params;
 
@@ -52,14 +52,14 @@ export default class MemoList extends React.Component<Props, State> {
 
   async loadTags(): Promise<void> {
     const { data } = await axios.get(
-      `${process.env.REACT_APP_BACKEND_URL}/api/tags`
+      `${process.env.REACT_APP_BACKEND_URL}/tags/index`
     );
     this.setState({ tags: data });
   }
 
   async loadMemos(tagId: string): Promise<void> {
     const { data } = await axios.get(
-      `${process.env.REACT_APP_BACKEND_URL}/api/memos?tag_id=${tagId}`
+      `${process.env.REACT_APP_BACKEND_URL}/memos/index?tag_id=${tagId}`
     );
     this.setState({ memos: data });
   }

@@ -19,8 +19,6 @@ interface Image {
 }
 
 export default class Gallery extends React.Component<Props, State> {
-  private mounted = false;
-
   private loadImagesFuncHandler: (
     arg0: string
   ) => Promise<void> = this.loadImagesFunc.bind(this);
@@ -33,24 +31,17 @@ export default class Gallery extends React.Component<Props, State> {
     };
   }
 
-  componentDidMount(): void {
-    this.mounted = true;
+  componentWillMount(): void {
     this.loadImagesFunc(SelectorList.TYPES[0].value);
-  }
-
-  componentWillUnmount(): void {
-    this.mounted = false;
   }
 
   async loadImagesFunc(targetType: string): Promise<void> {
     await axios
       .get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/images?target_type=${targetType}`
+        `${process.env.REACT_APP_BACKEND_URL}/images/index?target_type=${targetType}`
       )
       .then((result) => {
-        if (this.mounted) {
-          this.setState({ images: result.data });
-        }
+        this.setState({ images: result.data });
       });
   }
 

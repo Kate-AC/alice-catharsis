@@ -32,8 +32,12 @@ export default class MemoSingle extends React.Component<Props, State> {
     };
   }
 
-  componentDidMount(): void {
+  componentWillMount(): void {
     this.loadMemo(MemoSingle.getMemoId());
+  }
+
+  componentDidMount(): void {
+    HighLight.initHighlighting();
   }
 
   static getMemoId(): string {
@@ -42,10 +46,9 @@ export default class MemoSingle extends React.Component<Props, State> {
 
   async loadMemo(memoId: string): Promise<void> {
     const result = await axios.get(
-      `${process.env.REACT_APP_BACKEND_URL}/api/memos/${memoId}`
+      `${process.env.REACT_APP_BACKEND_URL}/memos/show?memo_id=${memoId}`
     );
     this.setState({ memo: result.data.memo, tag: result.data.tag });
-    HighLight.initHighlighting();
   }
 
   render(): React.ReactElement {

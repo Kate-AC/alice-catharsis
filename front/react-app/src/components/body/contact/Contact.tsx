@@ -61,9 +61,9 @@ export default class Contact extends React.Component<Props, Status> {
     const { value } = this.state;
 
     axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/api/contacts`, {
+      .post(`${process.env.REACT_APP_BACKEND_URL}/contacts/mail`, JSON.stringify({
         message: value,
-      })
+      }))
       .then((response) => {
         if (response.status !== 200) {
           this.setState({ status: "open" });

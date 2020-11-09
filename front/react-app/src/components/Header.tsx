@@ -27,6 +27,9 @@ export default class Header extends React.Component {
             to="/"
             id="hero-title"
             onClick={() => {
+              const activeMenu = document.querySelector("#menu .panel span.active") as HTMLElement;
+              if (activeMenu !== null) activeMenu.classList.remove("active");
+
               const btnTrigger = document.querySelector(".btn-trigger.active") as HTMLElement;
               if (btnTrigger === null) return;
               btnTrigger.click();

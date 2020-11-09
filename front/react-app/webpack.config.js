@@ -8,7 +8,7 @@ module.exports = {
   devtool: 'inline-source-map',
   output:
     {
-      filename: 'js/index.js',
+      filename: 'js/main.js',
       path: path.resolve(__dirname, 'public')
     }
   ,
