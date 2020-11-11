@@ -33,10 +33,7 @@ export default function About(): React.ReactElement {
           <br />
         </p>
         <p>
-          <img
-            src="https://s3-ap-northeast-1.amazonaws.com/s3.alice-catharsis/alice01.jpg"
-            alt="banner"
-          />
+          <img src="/images/alice01.jpg" alt="banner" />
         </p>
         <h3>当サイトへのご連絡について</h3>
         <p>
@@ -49,6 +46,9 @@ export default function About(): React.ReactElement {
           <img src="/images/mail.jpg" alt="mail" />
         </p>
         <h3>当サイトの情報</h3>
+        <p>
+          <img src="/images/aws_cloud.png" alt="aws" style={{width: "100%"}} />
+        </p>
       </div>
     </>
   );

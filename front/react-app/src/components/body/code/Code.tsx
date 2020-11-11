@@ -19,7 +19,11 @@ export default class Code extends React.Component {
         url: "https://github.com/Kate-AC/alice-catharsis",
         headline: "このサイトの全てを置いてきた",
         description: `
-          terraform使ってみたかったというのが大きい<br />
+          元々mydnsを使って自宅サーバーにホームページを置いていたんですけど、<br />
+          誰かがブルートフォースしてくると回線が重くなってキレそうになるのと、<br />
+          2度ほど踏み台に利用されてソフトバンクから警告が来るという状態だったので、<br />
+          いい加減AWSにしてやるよという感じで一新しました。<br />
+          terraform使ってみたかったというのが大きいですね。<br />
         `,
       },
       {

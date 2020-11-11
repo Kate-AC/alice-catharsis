@@ -21,7 +21,7 @@ interface Tag {
 interface Memo {
   body: string;
   title: string;
-  published_date: string; // eslint-disable-line camelcase
+  published_at: string; // eslint-disable-line camelcase
 }
 
 export default class MemoSingle extends React.Component<Props, State> {
@@ -29,7 +29,7 @@ export default class MemoSingle extends React.Component<Props, State> {
     super(props);
     this.state = {
       nowLoading: true,
-      memo: { body: "", title: "", published_date: "" },
+      memo: { body: "", title: "", published_at: "" },
       tag: { id: 0, name: "", color: "" },
     };
 
@@ -61,11 +61,11 @@ export default class MemoSingle extends React.Component<Props, State> {
           />
           <hr className="dot" />
           <div>
-            <h3>{memo.title}</h3>
             <div>
-              <span className="date">{memo.published_date}</span>
+              <span className="date">{memo.published_at.slice(0, 11)}</span>
               <Tag key={tag.id} id={tag.id} name={tag.name} color={tag.color} />
             </div>
+            <h3>{memo.title}</h3>
           </div>
           <hr className="dot" />
           <div

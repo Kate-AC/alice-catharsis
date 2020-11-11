@@ -21,11 +21,13 @@ export default class CodeBox extends React.Component<Props, State> {
 
   componentDidMount(): void {
     const { current } = this.ref;
-    const { opened } = this.state;
 
     if (current === null) return;
 
-    current.addEventListener("click", () => this.setState({ opened: !opened }));
+    current.addEventListener("click", () => {
+      const { opened } = this.state;
+      this.setState({ opened: !opened });
+    });
   }
 
   render(): React.ReactElement {

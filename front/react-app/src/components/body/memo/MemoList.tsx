@@ -24,7 +24,7 @@ interface Tag {
 interface Memo {
   id: number;
   title: string;
-  published_date: string; // eslint-disable-line camelcase
+  published_at: string; // eslint-disable-line camelcase
   tag_id: number; // eslint-disable-line camelcase
   tag_name: string; // eslint-disable-line camelcase
   tag_color: string; // eslint-disable-line camelcase
@@ -90,7 +90,7 @@ export default class MemoList extends React.Component<Props, State> {
               key={item.id}
               id={item.id}
               title={item.title}
-              publishedDate={item.published_date}
+              publishedAt={item.published_at}
               tagName={item.tag_name}
               tagColor={item.tag_color}
             />
