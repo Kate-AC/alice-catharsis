@@ -22,8 +22,8 @@ footer {
   width: 100%;
 
   animation-name: ContentsRaise;
-  animation-duration: 0.5s;
-  animation-delay: 0.8s;
+  animation-duration: 0.3s;
+  animation-delay: 0.3s;
   animation-fill-mode: both;
 }
 
@@ -58,8 +58,8 @@ footer {
     word-break: break-all;
 
     animation-name: ContentsRaise;
-    animation-duration: 0.5s;
-    animation-delay: 0.4s;
+    animation-duration: 0.3s;
+    animation-delay: 0.3s;
     animation-fill-mode: both;
 
     p {
@@ -79,6 +79,7 @@ footer {
   flex-direction: column;
   justify-content: space-between;
   z-index: 999;
+  pointer-events: none;
 
   a {
     display: flex;
@@ -151,9 +152,8 @@ hr {
       &.belt-r18 {
         background-color: $menu-background-color;
         color: #ffffff;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         font-weight: bold;
-        padding-top: 3px;
         position: absolute;
         right: -2rem;
         text-align: center;
@@ -274,7 +274,7 @@ hr {
     margin: 0 5px;
     padding: 5px 10px;
     transition: all 0.2s ease;
-    width: 100px;
+    width: 120px;
 
     &.selected, &:hover {
       color: #fff;
@@ -283,91 +283,33 @@ hr {
   }
 }
 
-#background-panel {
+#background-img {
   position: fixed;
+  opacity: 0.8;
   top: 0;
-  left: 0;
-  width: 100%;
+  right: 0;
   height: 100%;
-  background-image: url(/images/bg_01.jpg);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: right bottom;
+  margin: 0;
   z-index: -999;
-}
 
-/*
-#gallery {
-  line-height: 0;
-  -webkit-column-count: 3;
-  -webkit-column-gap: 0px;
-  -moz-column-count: 3;
-  -moz-column-gap: 0px;
-  column-count: 4;
-  column-gap: 10px;
-  padding: 0 8%;
-
-  .image-panel {
-    display: inline-block;
-    margin-bottom: 10px;
+  .frame {
     position: relative;
-    width:100%;
-
-    span {
-      cursor: pointer;
-
-      &.filter-clear {
-        position: absolute;
-        text-align: center;
-        height: 100%;
-        width: 100%;
-        z-index: 3;
-      }
-
-      &.title-panel {
-        align-items: center;
-        display: flex;
-        height: 100%;
-        justify-content: center;
-        overflow: hidden;
-        position: absolute;
-        width: 100%;
-        z-index: 2;
-
-        span {
-          color: #ffffff;
-          margin-left: -200%;
-          transition: all 0.2s ease;
-        }
-      }
-
-      &.filter-effect {
-        transition: all 0.4s ease;
-        position: absolute;
-        text-align: center;
-        height: 100%;
-        width: 100%;
-        z-index: 1;
-      }
-
-      &.filter-clear:hover ~ .title-panel > span {
-        margin-left: 0%;
-      }
-
-      &.filter-clear:hover ~ .filter-effect {
-        background-color: rgba(0,0,0, 0.4);
-      }
-    }
+    height: 100%;
 
     img {
-      opacity: 0;
-      transition: all 0.2s ease;
-      width: 100%;
-
-      &.visible {
-        opacity: 1;
-      }
+      height: 100%;
     }
   }
+
+  .frame:after {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      box-shadow: 40px 0px 40px 0px #fff inset;
+    }
+
 }
-*/
+

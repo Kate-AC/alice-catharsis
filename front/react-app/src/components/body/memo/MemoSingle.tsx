@@ -7,6 +7,7 @@ import LoadingPanel from "../../LoadingPanel";
 type Props = {};
 
 interface State {
+  nowLoading: boolean;
   tag: Tag;
   memo: Memo;
 }
@@ -27,17 +28,12 @@ export default class MemoSingle extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
+      nowLoading: true,
       memo: { body: "", title: "", published_date: "" },
       tag: { id: 0, name: "", color: "" },
     };
-  }
 
-  componentWillMount(): void {
     this.loadMemo(MemoSingle.getMemoId());
-  }
-
-  componentDidMount(): void {
-    HighLight.initHighlighting();
   }
 
   static getMemoId(): string {
@@ -48,25 +44,28 @@ export default class MemoSingle extends React.Component<Props, State> {
     const result = await axios.get(
       `${process.env.REACT_APP_BACKEND_URL}/memos/show?memo_id=${memoId}`
     );
-    this.setState({ memo: result.data.memo, tag: result.data.tag });
+    this.setState({ memo: result.data.memo, tag: result.data.tag, nowLoading: false });
+    HighLight.initHighlighting();
   }
 
   render(): React.ReactElement {
-    const { memo, tag } = this.state;
+    const { memo, tag, nowLoading } = this.state;
 
     return (
       <div>
-        <LoadingPanel />
+        <LoadingPanel nowLoading={nowLoading} />
         <div id="contents-body">
           <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/monokai-sublime.min.css"
           />
           <hr className="dot" />
-          <h3>{memo.title}</h3>
           <div>
-            <span className="date">{memo.published_date}</span>
-            <Tag key={tag.id} id={tag.id} name={tag.name} color={tag.color} />
+            <h3>{memo.title}</h3>
+            <div>
+              <span className="date">{memo.published_date}</span>
+              <Tag key={tag.id} id={tag.id} name={tag.name} color={tag.color} />
+            </div>
           </div>
           <hr className="dot" />
           <div

@@ -20,7 +20,7 @@ resource "aws_lambda_function" "current" {
   handler       = "${var.controller}.${var.method}"
   role          = var.role
   runtime       = "ruby2.7"
-  memory_size   = 512
+  memory_size   = 1024
   reserved_concurrent_executions = 10
 
   filename         = data.archive_file.function_source.output_path
@@ -66,12 +66,6 @@ resource "aws_api_gateway_integration" "current" {
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
   uri                     = aws_lambda_function.current.invoke_arn
-}
-
-resource "aws_lambda_provisioned_concurrency_config" "current" {
-  function_name                     = aws_lambda_function.current.function_name
-  provisioned_concurrent_executions = 10
-  qualifier                         = aws_lambda_function.current.version
 }
 
 resource "aws_lambda_permission" "trigger" {

@@ -15,13 +15,14 @@ pre {
   width: 2rem;
   height: 1.5rem;
   cursor: pointer;
+  pointer-events: auto;
 
   span {
     position: absolute;
     left: 0;
     width: 100%;
-    height: 2px;
-    background-color: #666666;
+    height: 1px;
+    background-color: #aaaaaa;
     border-radius: 4px;
     display: inline-block;
     transition: all .5s;
@@ -60,6 +61,7 @@ pre {
     transition: all .1s ease-in-out;
     box-shadow: 0px 0px 1px 3px rgba(255, 255, 255, 0.8);
     border-radius: 50px;
+    pointer-events: auto;
 
     &.pixiv {
       background: url(/images/pixiv.svg) rgba(255,255,255,0.8);

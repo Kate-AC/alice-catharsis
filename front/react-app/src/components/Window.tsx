@@ -27,7 +27,11 @@ export default function Window(): React.ReactElement {
           </div>
           <Footer />
         </main>
-        <aside id="background-panel" />
+        <figure id="background-img">
+          <div className="frame">
+            <img src="/images/bg_01.jpg" />
+          </div>
+        </figure>
       </div>
     </BrowserRouter>
   );

@@ -1,8 +1,14 @@
 import * as React from "react";
 
-export default function LoadingPanel(): React.ReactElement {
+interface Props {
+  nowLoading: boolean;
+}
+
+export default function LoadingPanel(props: Props): React.ReactElement {
+  const { nowLoading } = props;
+
   return (
-    <aside className="loading-panel">
+    <aside className={"loading-panel " + (nowLoading ? "" : "loaded")}>
       <div className="loading" />
     </aside>
   );

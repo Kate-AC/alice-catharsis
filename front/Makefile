@@ -4,7 +4,7 @@ build:
 
 .PHONY: run
 run:
-	docker-compose up webpack -d
+	docker-compose up -d webpack
 	docker-compose up app
 
 .PHONY: down

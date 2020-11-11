@@ -4,10 +4,12 @@
   position: fixed;
   width: 100%;
   z-index: 9999;
+}
 
+.loaded {
   animation-name: LoadingClose;
-  animation-duration: 0s;
-  animation-delay: 0.5s;
+  animation-duration: 0.3s;
+  animation-delay: 0.3s;
   animation-fill-mode: both;
 }
 

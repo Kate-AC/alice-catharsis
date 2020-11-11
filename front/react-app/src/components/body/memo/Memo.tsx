@@ -11,7 +11,7 @@ export default function Memo(): React.ReactElement {
         path="/memo"
         render={() => <MemoList key={Math.random()} />}
       />
-      <Route path="/memo/*" render={() => <MemoSingle />} />
+      <Route path="/memo/*" render={() => <MemoSingle key={Math.random()} />} />
     </div>
   );
 }

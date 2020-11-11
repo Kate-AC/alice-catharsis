@@ -3,12 +3,13 @@
     {
       "PutRequest": {
         "Item": {
-          "id": {"N":"26"},
+          "id": {"S":"26"},
+          "sort_id": {"N":"26"},
           "target_type": {"S":"1"},
           "title": {"S":"2枚目 #パイズリの日"},
           "url": {"S":"https://twitter.com/AliceCatharsis/status/1293584697574842368"},
           "thumbnail": {"S":"https://pbs.twimg.com/media/EfO8V3_VoAA2qym?format=jpg&name=large"},
-          "adjusty": {"S":"{\"width\": \"100%\",\"top\": \"0px\",\"left\": \"0px\"}"},
+          "adjusty": {"S":"{\"width\": \"130%\", \"top\": \"-100px\", \"left\": \"-50px\"}"},
           "deleted": {"BOOL":false},
           "creaetd_at": {"S":"2020-10-26 07:37:16"},
           "updated_at": {"S":"2020-10-26 07:37:16"}
@@ -18,12 +19,13 @@
     {
       "PutRequest": {
         "Item": {
-          "id": {"N":"27"},
+          "id": {"S":"27"},
+          "sort_id": {"N":"27"},
           "target_type": {"S":"1"},
           "title": {"S":"小学校の頃からの親友（野球部）に女装癖があることをカミングアウトした。「俺が童貞捨てさせてやるか？笑」と冗談のつもりで言ったら彼を本気にさせてしまった。"},
           "url": {"S":"https://twitter.com/AliceCatharsis/status/1295009851630686208"},
           "thumbnail": {"S":"https://pbs.twimg.com/media/EfjMhK1UcAIzB_j?format=jpg&name=4096x4096"},
-          "adjusty": {"S":"{\"width\": \"100%\",\"top\": \"0px\",\"left\": \"0px\"}"},
+          "adjusty": {"S":"{\"width\": \"400%\", \"top\": \"-250px\", \"left\": \"-650px\"}"},
           "deleted": {"BOOL":false},
           "creaetd_at": {"S":"2020-10-26 07:37:16"},
           "updated_at": {"S":"2020-10-26 07:37:16"}
@@ -33,12 +35,13 @@
     {
       "PutRequest": {
         "Item": {
-          "id": {"N":"28"},
+          "id": {"S":"28"},
+          "sort_id": {"N":"28"},
           "target_type": {"S":"1"},
           "title": {"S":"彼女（？）が男の娘の話"},
           "url": {"S":"https://twitter.com/AliceCatharsis/status/1296020861439209472"},
           "thumbnail": {"S":"https://pbs.twimg.com/media/Efxj7x2UMAAAYj9?format=jpg&name=medium"},
-          "adjusty": {"S":"{\"width\": \"100%\",\"top\": \"0px\",\"left\": \"0px\"}"},
+          "adjusty": {"S":"{\"width\": \"140%\", \"top\": \"-40px\", \"left\": \"-50px\"}"},
           "deleted": {"BOOL":false},
           "creaetd_at": {"S":"2020-10-26 07:37:16"},
           "updated_at": {"S":"2020-10-26 07:37:16"}
@@ -48,12 +51,93 @@
     {
       "PutRequest": {
         "Item": {
-          "id": {"N":"29"},
+          "id": {"S":"29"},
+          "sort_id": {"N":"29"},
           "target_type": {"S":"0"},
           "title": {"S":"彼女とデートなうに使っていいよのやつ"},
           "url": {"S":"https://twitter.com/AliceCatharsis/status/1297028572448608256"},
           "thumbnail": {"S":"https://pbs.twimg.com/media/Ef_4hvqU8AAdjjj?format=jpg&name=large"},
-          "adjusty": {"S":"{\"width\": \"100%\",\"top\": \"0px\",\"left\": \"0px\"}"},
+          "adjusty": {"S":"{\"width\": \"120%\", \"top\": \"-120px\", \"left\": \"-60px\"}"},
+          "deleted": {"BOOL":false},
+          "creaetd_at": {"S":"2020-10-26 07:37:16"},
+          "updated_at": {"S":"2020-10-26 07:37:16"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": {"S":"30"},
+          "sort_id": {"N":"30"},
+          "target_type": {"S":"0"},
+          "title": {"S":"看板娘ズ"},
+          "url": {"S":"https://twitter.com/AliceCatharsis/status/1308015115317334016"},
+          "thumbnail": {"S":"https://pbs.twimg.com/media/EicAaFHUMAEzrc1?format=jpg&name=4096x4096"},
+          "adjusty": {"S":"{\"width\": \"140%\", \"top\": \"-40px\", \"left\": \"-50px\"}"},
+          "deleted": {"BOOL":false},
+          "creaetd_at": {"S":"2020-10-26 07:37:16"},
+          "updated_at": {"S":"2020-10-26 07:37:16"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": {"S":"31"},
+          "sort_id": {"N":"31"},
+          "target_type": {"S":"0"},
+          "title": {"S":"エリコ"},
+          "url": {"S":"https://twitter.com/AliceCatharsis/status/1309887766763724801"},
+          "thumbnail": {"S":"https://pbs.twimg.com/media/Ei2n8WNUYAAlKCM?format=jpg&name=4096x4096"},
+          "adjusty": {"S":"{\"width\": \"140%\", \"top\": \"-40px\", \"left\": \"-50px\"}"},
+          "deleted": {"BOOL":false},
+          "creaetd_at": {"S":"2020-10-26 07:37:16"},
+          "updated_at": {"S":"2020-10-26 07:37:16"}
+        }
+      }
+    },
+   {
+      "PutRequest": {
+        "Item": {
+          "id": {"S":"32"},
+          "sort_id": {"N":"32"},
+          "target_type": {"S":"1"},
+          "title": {"S":"エリコ2"},
+          "url": {"S":"https://twitter.com/AliceCatharsis/status/1311297948274143232"},
+          "thumbnail": {"S":"https://pbs.twimg.com/media/EjKqcowUcAASPSB?format=jpg&name=4096x4096"},
+          "adjusty": {"S":"{\"width\": \"260%\", \"top\": \"-220px\", \"left\": \"-90px\"}"},
+          "deleted": {"BOOL":false},
+          "creaetd_at": {"S":"2020-10-26 07:37:16"},
+          "updated_at": {"S":"2020-10-26 07:37:16"}
+        }
+      }
+    },
+   {
+      "PutRequest": {
+        "Item": {
+          "id": {"S":"33"},
+          "sort_id": {"N":"33"},
+          "target_type": {"S":"1"},
+          "title": {"S":"挟みたい子"},
+          "url": {"S":"https://twitter.com/AliceCatharsis/status/1316747807500369921"},
+          "thumbnail": {"S":"https://pbs.twimg.com/media/EkYG-KJU0AA--y0?format=jpg&name=large"},
+          "adjusty": {"S":"{\"width\": \"120%\", \"top\": \"-50px\", \"left\": \"-20px\"}"},
+          "deleted": {"BOOL":false},
+          "creaetd_at": {"S":"2020-10-26 07:37:16"},
+          "updated_at": {"S":"2020-10-26 07:37:16"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": {"S":"34"},
+          "sort_id": {"N":"34"},
+          "target_type": {"S":"1"},
+          "title": {"S":"アリスさん"},
+          "url": {"S":"https://twitter.com/AliceCatharsis/status/1319655372869697545"},
+          "thumbnail": {"S":"https://pbs.twimg.com/media/ElBbe5iUcAE8b3i?format=jpg&name=medium"},
+          "adjusty": {"S":"{\"width\": \"150%\", \"top\": \"-80px\", \"left\": \"-80px\"}"},
           "deleted": {"BOOL":false},
           "creaetd_at": {"S":"2020-10-26 07:37:16"},
           "updated_at": {"S":"2020-10-26 07:37:16"}

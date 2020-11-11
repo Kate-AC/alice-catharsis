@@ -79,7 +79,7 @@ export default class Contact extends React.Component<Props, Status> {
 
     return (
       <>
-        <LoadingPanel />
+        <LoadingPanel nowLoading={false} />
         <div id="contents-body">
           <h1>CONTACT</h1>
           <p>

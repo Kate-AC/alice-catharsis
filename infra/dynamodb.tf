@@ -9,7 +9,7 @@ resource "aws_dynamodb_table" "images" {
 
   attribute {
     name = "id"
-    type = "N"
+    type = "S"
   }
 
   attribute {

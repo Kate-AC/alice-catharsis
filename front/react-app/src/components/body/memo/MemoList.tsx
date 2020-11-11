@@ -10,6 +10,7 @@ interface Props {
 }
 
 interface State {
+  nowLoading: boolean;
   tags: Tag[];
   memos: Memo[];
 }
@@ -33,6 +34,7 @@ export default class MemoList extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
+      nowLoading: true,
       tags: [],
       memos: [],
     };
@@ -61,15 +63,15 @@ export default class MemoList extends React.Component<Props, State> {
     const { data } = await axios.get(
       `${process.env.REACT_APP_BACKEND_URL}/memos/index?tag_id=${tagId}`
     );
-    this.setState({ memos: data });
+    this.setState({ memos: data, nowLoading: false });
   }
 
   render(): React.ReactElement {
-    const { tags, memos } = this.state;
+    const { tags, memos, nowLoading } = this.state;
 
     return (
       <div>
-        <LoadingPanel />
+        <LoadingPanel nowLoading={nowLoading} />
         <div id="contents-body">
           <h1>MEMO</h1>
           <div id="tag-box">

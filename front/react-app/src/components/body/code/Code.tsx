@@ -72,7 +72,7 @@ export default class Code extends React.Component {
   render(): React.ReactElement {
     return (
       <>
-        <LoadingPanel />
+        <LoadingPanel nowLoading={false} />
         <div id="contents-body">
           <h1>CODE</h1>
 

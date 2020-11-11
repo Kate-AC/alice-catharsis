@@ -6,16 +6,16 @@ def get_client
 end
 
 def index(event:, context:)
-  types = { "normal" => "0", "r18" => "1" }.freeze
+  types = { "0" => "normal", "1" => "r18" }.freeze
 
   target_type_string = event["queryStringParameters"]["target_type"]
-  target_type = types[target_type_string]
 
   results = get_client.scan(table_name: "images")
   images = results.items.filter { |image| image["deleted"] == false }
-  images = images.sort { |a, b| b["id"] <=> a["id"] }
+  images = images.sort { |a, b| b["sort_id"] <=> a["sort_id"] }
+  images.each { |image| image["target_type"] = types[image["target_type"]] }
 
-  images = images.filter { |image| image["target_type"] == target_type } unless target_type.nil?
+  images = images.filter { |image| image["target_type"] == target_type_string } if target_type_string != "all"
 
   {
     statusCode: 200,

@@ -4,7 +4,7 @@ import LoadingPanel from "../../LoadingPanel";
 export default function Api(): React.ReactElement {
   return (
     <>
-      <LoadingPanel />
+      <LoadingPanel nowLoading={false} />
       <div id="contents-body">
         <h1>API</h1>
         <p>

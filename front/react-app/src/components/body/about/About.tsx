@@ -4,7 +4,7 @@ import LoadingPanel from "../../LoadingPanel";
 export default function About(): React.ReactElement {
   return (
     <>
-      <LoadingPanel />
+      <LoadingPanel nowLoading={false} />
       <div id="contents-body">
         <h1>ABOUT</h1>
         <p>HN: Kate</p>
