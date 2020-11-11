@@ -21,9 +21,9 @@ export default function About(): React.ReactElement {
           <br />
           ソースコードを上げるならGitHubに上げていればいいのですが、
           <br />
-          それでもこのサイト自体に意味を持たせたいと思い、
+          そうなってくると使っているSNSが分散してしまうため、
           <br />
-          自分のアウトプットに対するポータルサイトとして運営していくことにしました。
+          各SNSに対するポータルサイトとして運営していくことにしました。
         </p>
         <h3>リンクについて</h3>
         <p>
@@ -49,7 +49,6 @@ export default function About(): React.ReactElement {
           <img src="/images/mail.jpg" alt="mail" />
         </p>
         <h3>当サイトの情報</h3>
-        <p>Ruby on Rails / React / ECS / MySQL / nginx</p>
       </div>
     </>
   );

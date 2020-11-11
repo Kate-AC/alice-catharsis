@@ -8,6 +8,9 @@ variable "log" {}
 variable "rest_api_arn" {}
 variable "rest_api_id" {}
 variable "root_resource_id" {}
+variable "dir" {
+  default = ""
+}
 
 data "archive_file" "function_source" {
   type        = "zip"
@@ -17,7 +20,7 @@ data "archive_file" "function_source" {
 
 resource "aws_lambda_function" "current" {
   function_name = "${var.controller}_${var.method}"
-  handler       = "${var.controller}.${var.method}"
+  handler       = "${var.dir}${var.controller}.${var.method}"
   role          = var.role
   runtime       = "ruby2.7"
   memory_size   = 1024

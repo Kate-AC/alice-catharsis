@@ -43,7 +43,7 @@ export default class CodeBox extends React.Component<Props, State> {
         </div>
         <div className={`contents ${opened ? "opened" : "closed"}`}>
           <p>
-            <a href={url}>{url}</a>
+            <a href={url} target="_blank">{url}</a>
           </p>
           <p>{headline}</p>
           <p dangerouslySetInnerHTML={{ __html: description }} />

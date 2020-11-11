@@ -26,7 +26,7 @@ export default function Api(): React.ReactElement {
           r18: R18の画像から取得する。
         </p>
 
-        <p>【number】</p>
+        <p>【limit】</p>
         <p>1〜5まで指定可能（デフォルト5）</p>
 
         <h4>・戻り値</h4>
@@ -50,8 +50,8 @@ export default function Api(): React.ReactElement {
         <div className="code-background">
           <pre>
             {`
-  https://backend.alice-catharsis.com/api/v1/images/latest （?target_type=all&limit=5と同様の結果）
-  https://backend.alice-catharsis.com/api/v1/images/latest?target_type=all&limit=5
+  https://api.alice-catharsis.com/v1/images/latest （?target_type=all&limit=5と同様の結果）
+  https://api.alice-catharsis.com/v1/images/latest?target_type=all&limit=5
           `}
           </pre>
         </div>
