@@ -143,6 +143,22 @@
           "updated_at": {"S":"2020-10-26 07:37:16"}
         }
       }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": {"S":"35"},
+          "sort_id": {"N":"35"},
+          "target_type": {"S":"1"},
+          "title": {"S":"マスクアリスさん"},
+          "url": {"S":"https://twitter.com/AliceCatharsis/status/1330526873688805376"},
+          "thumbnail": {"S":"https://pbs.twimg.com/media/Enb7EbBW8AI_63o?format=jpg&name=medium"},
+          "adjusty": {"S":"{\"width\": \"150%\", \"top\": \"-80px\", \"left\": \"-80px\"}"},
+          "deleted": {"BOOL":false},
+          "creaetd_at": {"S":"2020-10-26 07:37:16"},
+          "updated_at": {"S":"2020-10-26 07:37:16"}
+        }
+      }
     }
   ]
 }

@@ -13,5 +13,6 @@ down:
 
 .PHONY: deploy
 deploy:
-	cd react-app && npm run build
+	cd react-app && GENERATE_SOURCEMAP=false npm run build
+	cd react-app && rm -fR build/js build/css
 	cd react-app && aws s3 sync build/ s3://public-production-alice-catharsis --acl public-read

@@ -9,11 +9,8 @@ export default function Api(): React.ReactElement {
         <h1>API</h1>
         <p>
           当サイトでは試験的にAPIを公開しています。
-          <br />
-          サーバーにかかる負荷が著しい場合は、断りなく公開を中止またはIPによる制限行う可能性があります。
         </p>
-        <h3>1. getLastImage</h3>
-        <p>このAPIは最新の画像を取得します。</p>
+        <h3>1. LatestImagesAPI</h3>
 
         <h4>・パラメータ</h4>
 
